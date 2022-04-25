@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { forecastReducer } from '../store/forecast/forecast.reducer';
 import { SearchBoxComponent } from '../components/search-box/search-box.component';
 import { ForecastTableComponent } from '../components/forecast-table/forecast-table.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ForecastEffects } from '../store/forecast/forecast.effects';
 import { EffectsModule } from '@ngrx/effects';
@@ -21,6 +21,8 @@ import { CapitalizeFirstLetterPipe } from '../helpers/capitalize.pipe';
 import { MatTableModule } from '@angular/material/table';
 import { cityReducer } from '../store/city/city.reducer';
 import { CityEffects } from '../store/city/city.effects';
+import { RouterModule } from '@angular/router';
+import { MyInterceptor } from '../interceptors/http.interceptor';
 
 @NgModule({
   declarations: [AppComponent, SearchBoxComponent, ForecastTableComponent, CapitalizeFirstLetterPipe],
@@ -32,6 +34,11 @@ import { CityEffects } from '../store/city/city.effects';
     StoreModule.forFeature('city', cityReducer),
     HttpClientModule,
     BrowserAnimationsModule,
+    RouterModule.forRoot(
+      [
+        { path: "", component: AppComponent}
+      ]
+    ),
     EffectsModule.forRoot([ForecastEffects, CityEffects]),
     MatSnackBarModule,
     MatProgressSpinnerModule,
@@ -40,7 +47,9 @@ import { CityEffects } from '../store/city/city.effects';
     MatSlideToggleModule,
     MatTableModule
   ],
-  providers: [],
   bootstrap: [AppComponent],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true }
+  ]
 })
 export class AppModule {}
