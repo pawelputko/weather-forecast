@@ -6,7 +6,9 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/weather-forecast",
         "index": "apps/weather-forecast/src/index.html",
@@ -18,7 +20,10 @@
           "apps/weather-forecast/src/favicon.ico",
           "apps/weather-forecast/src/assets"
         ],
-        "styles": ["apps/weather-forecast/src/styles.scss"],
+        "styles": [
+          "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+          "apps/weather-forecast/src/styles.scss"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -83,7 +88,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/weather-forecast"],
+      "outputs": [
+        "coverage/apps/weather-forecast"
+      ],
       "options": {
         "jestConfig": "apps/weather-forecast/jest.config.ts",
         "passWithNoTests": true

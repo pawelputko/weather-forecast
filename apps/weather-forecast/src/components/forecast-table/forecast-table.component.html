@@ -1,0 +1,14 @@
+<div *ngIf='(isLoading$ | async)' class='forecast-container'>
+  <mat-slide-toggle color='primary' (change)='toggleMode()'>Toggle to change forecast mode: {{typeEnum[mode] | capitalizeFirstLetter}}</mat-slide-toggle>
+
+  <table mat-table [dataSource]='dataSource' class='mat-elevation-z8'>
+    <ng-container *ngFor="let col of tableHeader; let idx = index" [matColumnDef]="col">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ col }} </th>
+      <td mat-cell *matCellDef="let element"> {{ element.data[idx] }}{{ idx > 0 ? '&ordm;' : null}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="tableHeader"></tr>
+    <tr mat-row *matRowDef="let row; columns: tableHeader;"></tr>
+  </table>
+</div>
+

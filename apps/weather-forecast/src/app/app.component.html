@@ -1,1 +1,5 @@
-<angular-task-nx-welcome></angular-task-nx-welcome>
+<div class='app'>
+  <h1>Weather Forecast App</h1>
+  <wf-search-box></wf-search-box>
+  <wf-forecast-table *ngIf='isCityLoaded$ | async' [city]='city$ | async'></wf-forecast-table>
+</div>

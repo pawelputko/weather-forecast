@@ -4,6 +4,9 @@
 
 export const environment = {
   production: false,
+  APP_ID: '010721642521f31b0fbc8c3831d45951',
+  cityUrl: 'http://api.openweathermap.org/geo/1.0/direct',
+  forecastUrl: 'https://api.openweathermap.org/data/2.5/onecall'
 };
 
 /*

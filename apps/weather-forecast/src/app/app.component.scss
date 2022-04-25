@@ -1,0 +1,11 @@
+.app {
+  background: url("/assets/images/background-image.png");
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  h1 {
+    text-align: center;
+  }
+}
